@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Solicite uma cotação de plano de saúde empresarial.">
+  <title>Cotação de Plano de Saúde | Josnei</title>
+
+  <!-- Meta Pixel: somente PageView ao carregar a página -->
+  <script>
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;
+      n.loaded=!0;
+      n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);
+      t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '2035500357235333');
+    fbq('track', 'PageView');
+  </script>
+
+  <noscript>
+    <img
+      height="1"
+      width="1"
+      style="display:none"
+      alt=""
+      src="https://www.facebook.com/tr?id=2035500357235333&ev=PageView&noscript=1"
+    >
+  </noscript>
+
+  <style>
+    :root {
+      --primary: #119b8f;
+      --primary-dark: #087a70;
+      --primary-soft: #e8f7f5;
+      --text: #17232f;
+      --muted: #65727e;
+      --border: #dce5e8;
+      --background: #f5f8f8;
+      --white: #ffffff;
+      --danger: #b42318;
+      --success: #13795b;
+      --shadow: 0 24px 60px rgba(30, 55, 63, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(17, 155, 143, 0.12), transparent 32%),
+        linear-gradient(135deg, #f8fbfb 0%, #eef5f4 100%);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+
+    .header {
+      width: 100%;
+      padding: 22px 24px 12px;
+    }
+
+    .header-inner {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      color: var(--white);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      box-shadow: 0 10px 24px rgba(17, 155, 143, 0.24);
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1.1;
+    }
+
+    .brand-copy span {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .secure-label {
+      color: var(--muted);
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .main {
+      width: 100%;
+      display: grid;
+      place-items: center;
+      padding: 14px 24px 28px;
+    }
+
+    .form-shell {
+      width: min(100%, 760px);
+      min-height: 530px;
+      background: rgba(255, 255, 255, 0.94);
+      border: 1px solid rgba(220, 229, 232, 0.9);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+    }
+
+    .progress-wrap {
+      padding: 0;
+      background: #edf3f2;
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 6px;
+      background: linear-gradient(90deg, var(--primary), #37b7ab);
+      transition: width 260ms ease;
+    }
+
+    .form-content {
+      min-height: 524px;
+      padding: 46px 56px 34px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .step-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .question-wrap {
+      flex: 1;
+      animation: enter 220ms ease;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .question-number {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary-dark);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    h1 {
+      max-width: 620px;
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .question-help {
+      max-width: 600px;
+      margin: 0 0 28px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+    }
+
+    .option {
+      width: 100%;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 15px 17px;
+      color: var(--text);
+      text-align: left;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      transition:
+        border-color 160ms ease,
+        background 160ms ease,
+        transform 160ms ease,
+        box-shadow 160ms ease;
+    }
+
+    .option:hover,
+    .option:focus-visible {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(17, 155, 143, 0.08);
+      outline: none;
+    }
+
+    .option-key {
+      width: 30px;
+      height: 30px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      color: var(--primary-dark);
+      font-size: 12px;
+      font-weight: 800;
+      background: #f7fbfa;
+    }
+
+    .text-input {
+      width: 100%;
+      padding: 17px 4px 14px;
+      color: var(--text);
+      font-size: clamp(20px, 4vw, 29px);
+      background: transparent;
+      border: 0;
+      border-bottom: 2px solid var(--border);
+      outline: none;
+      transition: border-color 160ms ease;
+    }
+
+    .text-input::placeholder {
+      color: #a8b3ba;
+    }
+
+    .text-input:focus {
+      border-bottom-color: var(--primary);
+    }
+
+    .field-note {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .error {
+      min-height: 22px;
+      margin-top: 12px;
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .navigation {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .back-button,
+    .next-button {
+      min-height: 48px;
+      padding: 12px 20px;
+      border-radius: 13px;
+      font-weight: 700;
+    }
+
+    .back-button {
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+    }
+
+    .back-button:hover,
+    .back-button:focus-visible {
+      color: var(--text);
+      background: #f2f6f5;
+      outline: none;
+    }
+
+    .next-button {
+      min-width: 142px;
+      color: var(--white);
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      border: 0;
+      box-shadow: 0 10px 24px rgba(17, 155, 143, 0.22);
+    }
+
+    .next-button:hover,
+    .next-button:focus-visible {
+      filter: brightness(0.98);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .next-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.65;
+      transform: none;
+    }
+
+    .success {
+      min-height: 410px;
+      display: none;
+      place-items: center;
+      text-align: center;
+    }
+
+    .success.active {
+      display: grid;
+    }
+
+    .success-icon {
+      width: 76px;
+      height: 76px;
+      margin: 0 auto 20px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 34px;
+      background: var(--success);
+      box-shadow: 0 16px 34px rgba(19, 121, 91, 0.2);
+    }
+
+    .success h2 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 5vw, 38px);
+      letter-spacing: -0.03em;
+    }
+
+    .success p {
+      max-width: 520px;
+      margin: 0 auto;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .footer {
+      padding: 0 24px 22px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 680px) {
+      .header {
+        padding: 16px 16px 8px;
+      }
+
+      .secure-label {
+        display: none;
+      }
+
+      .main {
+        padding: 8px 12px 18px;
+        place-items: stretch;
+      }
+
+      .form-shell {
+        min-height: calc(100vh - 116px);
+        border-radius: 22px;
+      }
+
+      .form-content {
+        min-height: calc(100vh - 122px);
+        padding: 30px 22px 24px;
+      }
+
+      .step-meta {
+        margin-bottom: 26px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .option {
+        min-height: 56px;
+      }
+
+      .navigation {
+        margin-top: 20px;
+      }
+
+      .back-button,
+      .next-button {
+        min-height: 46px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="header">
+      <div class="header-inner">
+        <a class="brand" href="#" aria-label="Josnei Planos de Saúde">
+          <div class="brand-mark">JP</div>
+          <div class="brand-copy">
+            <strong>Josnei Planos de Saúde</strong>
+            <span>Cotação empresarial</span>
+          </div>
+        </a>
+
+        <div class="secure-label">Seus dados são enviados com segurança</div>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="form-shell" aria-labelledby="question-title">
+        <div class="progress-wrap" aria-hidden="true">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <div class="form-content">
+          <div id="formArea">
+            <div class="step-meta">
+              <span id="stepCounter">Pergunta 1</span>
+              <span>Leva menos de 2 minutos</span>
+            </div>
+
+            <div class="question-wrap" id="questionWrap">
+              <div class="question-number" id="questionNumber">Etapa 1</div>
+              <h1 id="questionTitle">Carregando...</h1>
+              <p class="question-help" id="questionHelp"></p>
+
+              <div id="answerArea"></div>
+              <div class="error" id="errorMessage" role="alert" aria-live="polite"></div>
+            </div>
+
+            <div class="navigation">
+              <button class="back-button" id="backButton" type="button">
+                Voltar
+              </button>
+
+              <button class="next-button" id="nextButton" type="button">
+                Continuar
+              </button>
+            </div>
+          </div>
+
+          <div class="success" id="successArea">
+            <div>
+              <div class="success-icon" aria-hidden="true">✓</div>
+              <h2>Solicitação enviada!</h2>
+              <p>
+                Recebemos seus dados. Um especialista entrará em contato pelo WhatsApp
+                para dar continuidade à sua cotação.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      Ao enviar, você concorda em receber contato sobre a sua solicitação de cotação.
+      As informações do formulário são enviadas somente ao sistema de atendimento.
+    </footer>
+  </div>
+
+  <script>
+    (() => {
+      'use strict';
+
+      const WEBHOOK_URL =
+        'https://lungo-n8n.dzpywk.easypanel.host/webhook/cotacao-solucoes-sa';
+
+      const answers = {};
+      let currentVisibleIndex = 0;
+      let isSubmitting = false;
+      let leadEventSent = false;
+
+      const allSteps = [
+        {
+          id: 'tipo_cnpj',
+          type: 'choice',
+          title: 'Você possui CNPJ?',
+          help: 'Selecione a opção que melhor representa a sua empresa.',
+          options: ['MEI', 'Possuo CNPJ']
+        },
+        {
+          id: 'possui_plano',
+          type: 'choice',
+          title: 'Em qual opção você melhor se encaixa?',
+          help: 'Essa informação ajuda a personalizar a cotação.',
+          options: ['Possuo plano atualmente', 'Não possuo plano']
+        },
+        {
+          id: 'plano_atual',
+          type: 'text',
+          title: 'Qual é o seu plano de saúde atual?',
+          help: 'Informe o nome da operadora ou do plano.',
+          placeholder: 'Ex.: Unimed, Amil, Bradesco Saúde',
+          required: true,
+          showWhen: () => answers.possui_plano === 'Possuo plano atualmente'
+        },
+        {
+          id: 'custo_plano_atual',
+          type: 'text',
+          inputMode: 'decimal',
+          title: 'Qual é o custo aproximado do plano atual?',
+          help: 'Pode informar um valor aproximado.',
+          placeholder: 'Ex.: R$ 1.500,00',
+          required: true,
+          showWhen: () => answers.possui_plano === 'Possuo plano atualmente'
+        },
+        {
+          id: 'quantidade_vidas',
+          type: 'text',
+          inputMode: 'numeric',
+          title: 'Qual é a quantidade de vidas para cotação?',
+          help: 'Informe quantas pessoas serão incluídas no plano.',
+          placeholder: 'Ex.: 3',
+          required: true,
+          validate: value => {
+            const number = Number(value.replace(/\D/g, ''));
+            return number >= 1
+              ? ''
+              : 'Informe uma quantidade válida de pessoas.';
+          }
+        },
+        {
+          id: 'idades',
+          type: 'text',
+          title: 'Quais são as idades das vidas?',
+          help: 'Separe as idades por vírgula.',
+          placeholder: 'Ex.: 32, 30 e 5 anos',
+          required: true
+        },
+        {
+          id: 'hospital_preferencia',
+          type: 'text',
+          title: 'Você tem algum hospital de preferência?',
+          help: 'Caso não tenha preferência, escreva “Não”.',
+          placeholder: 'Digite o hospital ou “Não”',
+          required: true
+        },
+        {
+          id: 'nome',
+          type: 'text',
+          autocomplete: 'name',
+          title: 'Qual é o seu nome?',
+          help: 'Informe seu nome para identificarmos a solicitação.',
+          placeholder: 'Digite seu nome',
+          required: true,
+          validate: value =>
+            value.trim().length >= 2 ? '' : 'Informe seu nome.'
+        },
+        {
+          id: 'cidade',
+          type: 'text',
+          autocomplete: 'address-level2',
+          title: 'Em qual cidade você reside?',
+          help: 'A cidade ajuda a identificar as redes disponíveis.',
+          placeholder: 'Digite sua cidade',
+          required: true
+        },
+        {
+          id: 'whatsapp',
+          type: 'text',
+          inputMode: 'tel',
+          autocomplete: 'tel',
+          title: 'Qual é o seu WhatsApp?',
+          help: 'O especialista usará esse número para entrar em contato.',
+          placeholder: '(00) 00000-0000',
+          required: true,
+          mask: 'phone',
+          validate: value => {
+            const digits = value.replace(/\D/g, '');
+            return digits.length >= 10 && digits.length <= 11
+              ? ''
+              : 'Informe um WhatsApp válido com DDD.';
+          }
+        }
+      ];
+
+      const progressBar = document.getElementById('progressBar');
+      const stepCounter = document.getElementById('stepCounter');
+      const questionNumber = document.getElementById('questionNumber');
+      const questionTitle = document.getElementById('questionTitle');
+      const questionHelp = document.getElementById('questionHelp');
+      const questionWrap = document.getElementById('questionWrap');
+      const answerArea = document.getElementById('answerArea');
+      const errorMessage = document.getElementById('errorMessage');
+      const backButton = document.getElementById('backButton');
+      const nextButton = document.getElementById('nextButton');
+      const formArea = document.getElementById('formArea');
+      const successArea = document.getElementById('successArea');
+
+      function getVisibleSteps() {
+        return allSteps.filter(step => !step.showWhen || step.showWhen());
+      }
+
+      function getCurrentStep() {
+        const visibleSteps = getVisibleSteps();
+
+        if (currentVisibleIndex > visibleSteps.length - 1) {
+          currentVisibleIndex = visibleSteps.length - 1;
+        }
+
+        return visibleSteps[currentVisibleIndex];
+      }
+
+      function applyPhoneMask(value) {
+        const digits = value.replace(/\D/g, '').slice(0, 11);
+
+        if (digits.length <= 2) {
+          return digits;
+        }
+
+        if (digits.length <= 6) {
+          return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+        }
+
+        if (digits.length <= 10) {
+          return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+        }
+
+        return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+      }
+
+      function renderStep() {
+        const visibleSteps = getVisibleSteps();
+        const step = getCurrentStep();
+        const total = visibleSteps.length;
+        const position = currentVisibleIndex + 1;
+        const progress = Math.round((position / total) * 100);
+
+        progressBar.style.width = `${progress}%`;
+        stepCounter.textContent = `Pergunta ${position} de ${total}`;
+        questionNumber.textContent = `Etapa ${position}`;
+        questionTitle.textContent = step.title;
+        questionHelp.textContent = step.help || '';
+        errorMessage.textContent = '';
+        backButton.classList.toggle('hidden', currentVisibleIndex === 0);
+
+        nextButton.textContent =
+          currentVisibleIndex === total - 1 ? 'Enviar cotação' : 'Continuar';
+
+        questionWrap.style.animation = 'none';
+        void questionWrap.offsetWidth;
+        questionWrap.style.animation = '';
+
+        if (step.type === 'choice') {
+          renderChoiceStep(step);
+          nextButton.classList.add('hidden');
+        } else {
+          renderTextStep(step);
+          nextButton.classList.remove('hidden');
+        }
+      }
+
+      function renderChoiceStep(step) {
+        answerArea.innerHTML = '';
+
+        const options = document.createElement('div');
+        options.className = 'options';
+
+        step.options.forEach((optionText, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'option';
+          button.setAttribute('aria-label', optionText);
+
+          const key = document.createElement('span');
+          key.className = 'option-key';
+          key.textContent = String.fromCharCode(65 + index);
+
+          const label = document.createElement('span');
+          label.textContent = optionText;
+
+          button.append(key, label);
+
+          button.addEventListener('click', () => {
+            answers[step.id] = optionText;
+
+            if (
+              step.id === 'possui_plano' &&
+              optionText === 'Não possuo plano'
+            ) {
+              delete answers.plano_atual;
+              delete answers.custo_plano_atual;
+            }
+
+            goNext();
+          });
+
+          options.appendChild(button);
+        });
+
+        answerArea.appendChild(options);
+      }
+
+      function renderTextStep(step) {
+        answerArea.innerHTML = '';
+
+        const input = document.createElement('input');
+        input.id = `field-${step.id}`;
+        input.className = 'text-input';
+        input.type = 'text';
+        input.placeholder = step.placeholder || 'Digite sua resposta';
+        input.value = answers[step.id] || '';
+        input.inputMode = step.inputMode || 'text';
+
+        if (step.autocomplete) {
+          input.autocomplete = step.autocomplete;
+        }
+
+        input.addEventListener('input', event => {
+          let value = event.target.value;
+
+          if (step.mask === 'phone') {
+            value = applyPhoneMask(value);
+            event.target.value = value;
+          }
+
+          answers[step.id] = value;
+          errorMessage.textContent = '';
+        });
+
+        input.addEventListener('keydown', event => {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            handleNext();
+          }
+        });
+
+        const note = document.createElement('div');
+        note.className = 'field-note';
+        note.textContent = 'Pressione Enter ou clique em Continuar.';
+
+        answerArea.append(input, note);
+
+        window.setTimeout(() => input.focus(), 80);
+      }
+
+      function validateCurrentStep() {
+        const step = getCurrentStep();
+
+        if (step.type === 'choice') {
+          return '';
+        }
+
+        const value = String(answers[step.id] || '').trim();
+
+        if (step.required && !value) {
+          return 'Preencha este campo para continuar.';
+        }
+
+        if (step.validate) {
+          return step.validate(value);
+        }
+
+        return '';
+      }
+
+      function handleNext() {
+        if (isSubmitting) {
+          return;
+        }
+
+        const validationError = validateCurrentStep();
+
+        if (validationError) {
+          errorMessage.textContent = validationError;
+          const input = answerArea.querySelector('input');
+          if (input) input.focus();
+          return;
+        }
+
+        goNext();
+      }
+
+      function goNext() {
+        const visibleSteps = getVisibleSteps();
+
+        if (currentVisibleIndex >= visibleSteps.length - 1) {
+          submitForm();
+          return;
+        }
+
+        currentVisibleIndex += 1;
+        renderStep();
+      }
+
+      function goBack() {
+        if (isSubmitting || currentVisibleIndex === 0) {
+          return;
+        }
+
+        currentVisibleIndex -= 1;
+        renderStep();
+      }
+
+      function getUtmData() {
+        const params = new URLSearchParams(window.location.search);
+
+        return {
+          utm_source: params.get('utm_source') || '',
+          utm_medium: params.get('utm_medium') || '',
+          utm_campaign: params.get('utm_campaign') || '',
+          utm_content: params.get('utm_content') || '',
+          utm_term: params.get('utm_term') || '',
+          fbclid: params.get('fbclid') || ''
+        };
+      }
+
+      function buildPayload() {
+        const utms = getUtmData();
+
+        return {
+          tipo_cnpj: answers.tipo_cnpj || '',
+          possui_plano: answers.possui_plano || '',
+          plano_atual: answers.plano_atual || '',
+          custo_plano_atual: answers.custo_plano_atual || '',
+          quantidade_vidas: answers.quantidade_vidas || '',
+          idades: answers.idades || '',
+          hospital_preferencia: answers.hospital_preferencia || '',
+          nome: answers.nome || '',
+          cidade: answers.cidade || '',
+          whatsapp: String(answers.whatsapp || '').replace(/\D/g, ''),
+
+          ...utms,
+
+          origem: 'formulario_site',
+          dominio: window.location.hostname,
+          pagina: window.location.pathname,
+          data_envio: new Date().toISOString(),
+
+          respostas: {
+            tipo_cnpj: answers.tipo_cnpj || '',
+            possui_plano: answers.possui_plano || '',
+            plano_atual: answers.plano_atual || '',
+            custo_plano_atual: answers.custo_plano_atual || '',
+            quantidade_vidas: answers.quantidade_vidas || '',
+            idades: answers.idades || '',
+            hospital_preferencia: answers.hospital_preferencia || '',
+            nome: answers.nome || '',
+            cidade: answers.cidade || '',
+            whatsapp: String(answers.whatsapp || '').replace(/\D/g, '')
+          }
+        };
+      }
+
+      async function submitForm() {
+        if (isSubmitting) {
+          return;
+        }
+
+        const validationError = validateCurrentStep();
+
+        if (validationError) {
+          errorMessage.textContent = validationError;
+          return;
+        }
+
+        isSubmitting = true;
+        nextButton.disabled = true;
+        nextButton.textContent = 'Enviando...';
+        errorMessage.textContent = '';
+
+        try {
+          const response = await fetch(WEBHOOK_URL, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(buildPayload())
+          });
+
+          if (!response.ok) {
+            throw new Error(`Falha no envio: HTTP ${response.status}`);
+          }
+
+          /*
+            Evento padrão da Meta.
+
+            Importante:
+            - Só dispara depois que o webhook confirma o recebimento.
+            - Não envia respostas, idades, plano, hospital, cidade, UTMs
+              ou outros parâmetros para a Meta.
+            - Os eventos personalizados anteriores foram removidos.
+          */
+          if (!leadEventSent && typeof window.fbq === 'function') {
+            window.fbq('track', 'Lead');
+            leadEventSent = true;
+          }
+
+          formArea.classList.add('hidden');
+          successArea.classList.add('active');
+          progressBar.style.width = '100%';
+        } catch (error) {
+          console.error('Erro ao enviar o formulário:', error);
+          errorMessage.textContent =
+            'Não foi possível enviar agora. Verifique sua conexão e tente novamente.';
+        } finally {
+          isSubmitting = false;
+          nextButton.disabled = false;
+
+          if (!successArea.classList.contains('active')) {
+            nextButton.textContent = 'Enviar cotação';
+          }
+        }
+      }
+
+      backButton.addEventListener('click', goBack);
+      nextButton.addEventListener('click', handleNext);
+
+      renderStep();
+    })();
+  </script>
+</body>
+</html>
