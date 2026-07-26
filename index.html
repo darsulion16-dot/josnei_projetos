@@ -108,30 +108,12 @@
       text-decoration: none;
     }
 
-    .brand-mark {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      color: var(--white);
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      box-shadow: 0 10px 24px rgba(17, 155, 143, 0.24);
-    }
-
-    .brand-copy strong {
+    .brand-logo {
       display: block;
-      font-size: 15px;
-      line-height: 1.1;
-    }
-
-    .brand-copy span {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-size: 12px;
+      width: 190px;
+      max-width: 48vw;
+      height: auto;
+      object-fit: contain;
     }
 
     .secure-label {
@@ -415,6 +397,11 @@
         padding: 16px 16px 8px;
       }
 
+      .brand-logo {
+        width: 155px;
+        max-width: 58vw;
+      }
+
       .secure-label {
         display: none;
       }
@@ -462,12 +449,12 @@
   <div class="page">
     <header class="header">
       <div class="header-inner">
-        <a class="brand" href="#" aria-label="Josnei Planos de Saúde">
-          <div class="brand-mark">JP</div>
-          <div class="brand-copy">
-            <strong>Josnei Planos de Saúde</strong>
-            <span>Cotação empresarial</span>
-          </div>
+        <a class="brand" href="#" aria-label="Soluções Saúde">
+          <img
+            class="brand-logo"
+            src="data:image/jpeg;base64,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"
+            alt="Soluções Saúde"
+          >
         </a>
 
         <div class="secure-label">Seus dados são enviados com segurança</div>
@@ -522,8 +509,9 @@
     </main>
 
     <footer class="footer">
-      Ao enviar, você concorda em receber contato sobre a sua solicitação de cotação.
-      As informações do formulário são enviadas somente ao sistema de atendimento.
+      * Ao avançar após informar seu WhatsApp, você concorda com o armazenamento
+      e o uso dos dados fornecidos para contato e continuidade da cotação,
+      nos termos da Lei Geral de Proteção de Dados (LGPD).
     </footer>
   </div>
 
@@ -531,21 +519,130 @@
     (() => {
       'use strict';
 
-      const WEBHOOK_URL =
+      /*
+        Webhook final:
+        recebe o formulário completo e confirma a conversão.
+      */
+      const FINAL_WEBHOOK_URL =
         'https://lungo-n8n.dzpywk.easypanel.host/webhook/cotacao-solucoes-sa';
 
-      const answers = {};
-      let currentVisibleIndex = 0;
+      /*
+        Webhook parcial:
+        cria ou atualiza a linha na aba "Leads Parciais",
+        usando session_id como coluna de comparação.
+      */
+      const PARTIAL_WEBHOOK_URL =
+        'https://lungo-n8n.dzpywk.easypanel.host/webhook/cotacao-parcial-solucoes-sa';
+
+      const STORAGE_KEYS = {
+        sessionId: 'josnei_cotacao_session_id',
+        startedAt: 'josnei_cotacao_started_at',
+        answers: 'josnei_cotacao_answers',
+        step: 'josnei_cotacao_step'
+      };
+
+      function createSessionId() {
+        if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+          return window.crypto.randomUUID();
+        }
+
+        return [
+          Date.now().toString(36),
+          Math.random().toString(36).slice(2),
+          Math.random().toString(36).slice(2)
+        ].join('-');
+      }
+
+      function getOrCreateStorageValue(key, factory) {
+        const current = localStorage.getItem(key);
+
+        if (current) {
+          return current;
+        }
+
+        const created = factory();
+        localStorage.setItem(key, created);
+        return created;
+      }
+
+      function loadStoredAnswers() {
+        try {
+          const stored = localStorage.getItem(STORAGE_KEYS.answers);
+          const parsed = stored ? JSON.parse(stored) : {};
+          return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (error) {
+          console.warn('Não foi possível recuperar as respostas locais.', error);
+          return {};
+        }
+      }
+
+      const sessionId = getOrCreateStorageValue(
+        STORAGE_KEYS.sessionId,
+        createSessionId
+      );
+
+      const startedAt = getOrCreateStorageValue(
+        STORAGE_KEYS.startedAt,
+        () => new Date().toISOString()
+      );
+
+      const answers = loadStoredAnswers();
+
+      const storedStep = Number.parseInt(
+        localStorage.getItem(STORAGE_KEYS.step) || '0',
+        10
+      );
+
+      let currentVisibleIndex =
+        Number.isFinite(storedStep) && storedStep >= 0 ? storedStep : 0;
+
       let isSubmitting = false;
       let leadEventSent = false;
+      let finalCompleted = false;
+
+      /*
+        Mantém as atualizações parciais em ordem.
+        Isso evita que um status antigo "iniciado" sobrescreva
+        o status final "concluido".
+      */
+      let partialSaveQueue = Promise.resolve();
 
       const allSteps = [
+        {
+          id: 'nome',
+          type: 'text',
+          autocomplete: 'name',
+          title: 'Qual é o seu nome?',
+          help: 'Informe seu nome para identificarmos a solicitação.',
+          placeholder: 'Digite seu nome',
+          required: true,
+          validate: value =>
+            value.trim().length >= 2 ? '' : 'Informe seu nome.'
+        },
+        {
+          id: 'whatsapp',
+          type: 'text',
+          inputMode: 'tel',
+          autocomplete: 'tel',
+          title: 'Qual é o seu WhatsApp? *',
+          help: '* Ao avançar, você concorda que os dados informados sejam armazenados e utilizados para contato e continuidade da cotação, nos termos da LGPD.',
+          placeholder: '(00) 00000-0000',
+          required: true,
+          mask: 'phone',
+          validate: value => {
+            const digits = value.replace(/\D/g, '');
+
+            return digits.length >= 10 && digits.length <= 11
+              ? ''
+              : 'Informe um WhatsApp válido com DDD.';
+          }
+        },
         {
           id: 'tipo_cnpj',
           type: 'choice',
           title: 'Você possui CNPJ?',
-          help: 'Selecione a opção que melhor representa a sua empresa.',
-          options: ['MEI', 'Possuo CNPJ']
+          help: 'Selecione a opção que melhor representa sua situação.',
+          options: ['MEI', 'Possuo CNPJ', 'Não tenho CNPJ']
         },
         {
           id: 'possui_plano',
@@ -561,7 +658,8 @@
           help: 'Informe o nome da operadora ou do plano.',
           placeholder: 'Ex.: Unimed, Amil, Bradesco Saúde',
           required: true,
-          showWhen: () => answers.possui_plano === 'Possuo plano atualmente'
+          showWhen: () =>
+            answers.possui_plano === 'Possuo plano atualmente'
         },
         {
           id: 'custo_plano_atual',
@@ -571,7 +669,8 @@
           help: 'Pode informar um valor aproximado.',
           placeholder: 'Ex.: R$ 1.500,00',
           required: true,
-          showWhen: () => answers.possui_plano === 'Possuo plano atualmente'
+          showWhen: () =>
+            answers.possui_plano === 'Possuo plano atualmente'
         },
         {
           id: 'quantidade_vidas',
@@ -583,6 +682,7 @@
           required: true,
           validate: value => {
             const number = Number(value.replace(/\D/g, ''));
+
             return number >= 1
               ? ''
               : 'Informe uma quantidade válida de pessoas.';
@@ -605,17 +705,6 @@
           required: true
         },
         {
-          id: 'nome',
-          type: 'text',
-          autocomplete: 'name',
-          title: 'Qual é o seu nome?',
-          help: 'Informe seu nome para identificarmos a solicitação.',
-          placeholder: 'Digite seu nome',
-          required: true,
-          validate: value =>
-            value.trim().length >= 2 ? '' : 'Informe seu nome.'
-        },
-        {
           id: 'cidade',
           type: 'text',
           autocomplete: 'address-level2',
@@ -623,23 +712,6 @@
           help: 'A cidade ajuda a identificar as redes disponíveis.',
           placeholder: 'Digite sua cidade',
           required: true
-        },
-        {
-          id: 'whatsapp',
-          type: 'text',
-          inputMode: 'tel',
-          autocomplete: 'tel',
-          title: 'Qual é o seu WhatsApp?',
-          help: 'O especialista usará esse número para entrar em contato.',
-          placeholder: '(00) 00000-0000',
-          required: true,
-          mask: 'phone',
-          validate: value => {
-            const digits = value.replace(/\D/g, '');
-            return digits.length >= 10 && digits.length <= 11
-              ? ''
-              : 'Informe um WhatsApp válido com DDD.';
-          }
         }
       ];
 
@@ -660,14 +732,38 @@
         return allSteps.filter(step => !step.showWhen || step.showWhen());
       }
 
-      function getCurrentStep() {
+      function normalizeCurrentStep() {
         const visibleSteps = getVisibleSteps();
 
         if (currentVisibleIndex > visibleSteps.length - 1) {
-          currentVisibleIndex = visibleSteps.length - 1;
+          currentVisibleIndex = Math.max(visibleSteps.length - 1, 0);
         }
+      }
 
-        return visibleSteps[currentVisibleIndex];
+      function getCurrentStep() {
+        normalizeCurrentStep();
+        return getVisibleSteps()[currentVisibleIndex];
+      }
+
+      function saveLocalState() {
+        try {
+          localStorage.setItem(
+            STORAGE_KEYS.answers,
+            JSON.stringify(answers)
+          );
+          localStorage.setItem(
+            STORAGE_KEYS.step,
+            String(currentVisibleIndex)
+          );
+        } catch (error) {
+          console.warn('Não foi possível salvar o progresso local.', error);
+        }
+      }
+
+      function clearLocalState() {
+        Object.values(STORAGE_KEYS).forEach(key => {
+          localStorage.removeItem(key);
+        });
       }
 
       function applyPhoneMask(value) {
@@ -688,7 +784,106 @@
         return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
       }
 
+      function getWhatsAppDigits() {
+        return String(answers.whatsapp || '').replace(/\D/g, '');
+      }
+
+      function hasValidWhatsApp() {
+        const digits = getWhatsAppDigits();
+        return digits.length >= 10 && digits.length <= 11;
+      }
+
+      function getUtmData() {
+        const params = new URLSearchParams(window.location.search);
+
+        return {
+          utm_source: params.get('utm_source') || '',
+          utm_medium: params.get('utm_medium') || '',
+          utm_campaign: params.get('utm_campaign') || '',
+          utm_content: params.get('utm_content') || '',
+          utm_term: params.get('utm_term') || '',
+          fbclid: params.get('fbclid') || ''
+        };
+      }
+
+      function buildPartialPayload(status = 'iniciado') {
+        const visibleSteps = getVisibleSteps();
+        const totalSteps = visibleSteps.length;
+
+        return {
+          session_id: sessionId,
+          status,
+          etapa_atual:
+            status === 'concluido'
+              ? totalSteps
+              : Math.min(currentVisibleIndex + 1, totalSteps),
+
+          nome: String(answers.nome || '').trim(),
+          whatsapp: getWhatsAppDigits(),
+          tipo_cnpj: answers.tipo_cnpj || '',
+          possui_plano: answers.possui_plano || '',
+          plano_atual: answers.plano_atual || '',
+          custo_plano_atual: answers.custo_plano_atual || '',
+          quantidade_vidas: answers.quantidade_vidas || '',
+          idades: answers.idades || '',
+          hospital_preferencia: answers.hospital_preferencia || '',
+          cidade: answers.cidade || '',
+
+          utm_source: getUtmData().utm_source,
+          utm_medium: getUtmData().utm_medium,
+          utm_campaign: getUtmData().utm_campaign,
+          utm_content: getUtmData().utm_content,
+          utm_term: getUtmData().utm_term,
+
+          data_inicio: startedAt,
+          data_atualizacao: new Date().toISOString()
+        };
+      }
+
+      async function sendPartialPayload(payload, keepalive = false) {
+        const response = await fetch(PARTIAL_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload),
+          keepalive
+        });
+
+        if (!response.ok) {
+          throw new Error(
+            `Falha ao salvar progresso: HTTP ${response.status}`
+          );
+        }
+
+        return true;
+      }
+
+      function queuePartialSave(status = 'iniciado') {
+        /*
+          O registro no n8n começa apenas depois que a pessoa
+          informa um WhatsApp válido e avança.
+        */
+        if (!hasValidWhatsApp()) {
+          return Promise.resolve(false);
+        }
+
+        const payload = buildPartialPayload(status);
+
+        partialSaveQueue = partialSaveQueue
+          .catch(() => false)
+          .then(() => sendPartialPayload(payload))
+          .catch(error => {
+            console.warn('Progresso parcial não salvo.', error);
+            return false;
+          });
+
+        return partialSaveQueue;
+      }
+
       function renderStep() {
+        normalizeCurrentStep();
+
         const visibleSteps = getVisibleSteps();
         const step = getCurrentStep();
         const total = visibleSteps.length;
@@ -701,10 +896,16 @@
         questionTitle.textContent = step.title;
         questionHelp.textContent = step.help || '';
         errorMessage.textContent = '';
-        backButton.classList.toggle('hidden', currentVisibleIndex === 0);
+
+        backButton.classList.toggle(
+          'hidden',
+          currentVisibleIndex === 0
+        );
 
         nextButton.textContent =
-          currentVisibleIndex === total - 1 ? 'Enviar cotação' : 'Continuar';
+          currentVisibleIndex === total - 1
+            ? 'Enviar cotação'
+            : 'Continuar';
 
         questionWrap.style.animation = 'none';
         void questionWrap.offsetWidth;
@@ -717,6 +918,8 @@
           renderTextStep(step);
           nextButton.classList.remove('hidden');
         }
+
+        saveLocalState();
       }
 
       function renderChoiceStep(step) {
@@ -751,6 +954,7 @@
               delete answers.custo_plano_atual;
             }
 
+            saveLocalState();
             goNext();
           });
 
@@ -785,6 +989,7 @@
 
           answers[step.id] = value;
           errorMessage.textContent = '';
+          saveLocalState();
         });
 
         input.addEventListener('keydown', event => {
@@ -796,7 +1001,8 @@
 
         const note = document.createElement('div');
         note.className = 'field-note';
-        note.textContent = 'Pressione Enter ou clique em Continuar.';
+        note.textContent =
+          'Pressione Enter ou clique em Continuar.';
 
         answerArea.append(input, note);
 
@@ -832,11 +1038,16 @@
 
         if (validationError) {
           errorMessage.textContent = validationError;
+
           const input = answerArea.querySelector('input');
-          if (input) input.focus();
+          if (input) {
+            input.focus();
+          }
+
           return;
         }
 
+        saveLocalState();
         goNext();
       }
 
@@ -849,7 +1060,15 @@
         }
 
         currentVisibleIndex += 1;
+        saveLocalState();
         renderStep();
+
+        /*
+          Salva o lead parcial depois de cada resposta.
+          Como o WhatsApp é a segunda pergunta, o primeiro envio
+          ocorre quando a pessoa avança para a pergunta do CNPJ.
+        */
+        void queuePartialSave('iniciado');
       }
 
       function goBack() {
@@ -858,26 +1077,16 @@
         }
 
         currentVisibleIndex -= 1;
+        saveLocalState();
         renderStep();
       }
 
-      function getUtmData() {
-        const params = new URLSearchParams(window.location.search);
-
-        return {
-          utm_source: params.get('utm_source') || '',
-          utm_medium: params.get('utm_medium') || '',
-          utm_campaign: params.get('utm_campaign') || '',
-          utm_content: params.get('utm_content') || '',
-          utm_term: params.get('utm_term') || '',
-          fbclid: params.get('fbclid') || ''
-        };
-      }
-
-      function buildPayload() {
+      function buildFinalPayload() {
         const utms = getUtmData();
 
         return {
+          session_id: sessionId,
+
           tipo_cnpj: answers.tipo_cnpj || '',
           possui_plano: answers.possui_plano || '',
           plano_atual: answers.plano_atual || '',
@@ -885,16 +1094,18 @@
           quantidade_vidas: answers.quantidade_vidas || '',
           idades: answers.idades || '',
           hospital_preferencia: answers.hospital_preferencia || '',
-          nome: answers.nome || '',
+          nome: String(answers.nome || '').trim(),
           cidade: answers.cidade || '',
-          whatsapp: String(answers.whatsapp || '').replace(/\D/g, ''),
+          whatsapp: getWhatsAppDigits(),
 
           ...utms,
 
           origem: 'formulario_site',
           dominio: window.location.hostname,
           pagina: window.location.pathname,
+          data_inicio: startedAt,
           data_envio: new Date().toISOString(),
+          aviso_lgpd_exibido: true,
 
           respostas: {
             tipo_cnpj: answers.tipo_cnpj || '',
@@ -904,9 +1115,9 @@
             quantidade_vidas: answers.quantidade_vidas || '',
             idades: answers.idades || '',
             hospital_preferencia: answers.hospital_preferencia || '',
-            nome: answers.nome || '',
+            nome: String(answers.nome || '').trim(),
             cidade: answers.cidade || '',
-            whatsapp: String(answers.whatsapp || '').replace(/\D/g, '')
+            whatsapp: getWhatsAppDigits()
           }
         };
       }
@@ -929,37 +1140,45 @@
         errorMessage.textContent = '';
 
         try {
-          const response = await fetch(WEBHOOK_URL, {
+          const response = await fetch(FINAL_WEBHOOK_URL, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(buildPayload())
+            body: JSON.stringify(buildFinalPayload())
           });
 
           if (!response.ok) {
-            throw new Error(`Falha no envio: HTTP ${response.status}`);
+            throw new Error(
+              `Falha no envio final: HTTP ${response.status}`
+            );
           }
 
           /*
-            Evento padrão da Meta.
+            Aguarda os salvamentos anteriores e atualiza a mesma linha
+            da planilha para status "concluido".
+          */
+          await queuePartialSave('concluido');
 
-            Importante:
-            - Só dispara depois que o webhook confirma o recebimento.
-            - Não envia respostas, idades, plano, hospital, cidade, UTMs
-              ou outros parâmetros para a Meta.
-            - Os eventos personalizados anteriores foram removidos.
+          finalCompleted = true;
+
+          /*
+            O Pixel recebe somente o evento padrão Lead,
+            sem nome, WhatsApp, respostas, UTMs ou dados de saúde.
           */
           if (!leadEventSent && typeof window.fbq === 'function') {
             window.fbq('track', 'Lead');
             leadEventSent = true;
           }
 
+          clearLocalState();
+
           formArea.classList.add('hidden');
           successArea.classList.add('active');
           progressBar.style.width = '100%';
         } catch (error) {
           console.error('Erro ao enviar o formulário:', error);
+
           errorMessage.textContent =
             'Não foi possível enviar agora. Verifique sua conexão e tente novamente.';
         } finally {
@@ -971,6 +1190,25 @@
           }
         }
       }
+
+      /*
+        Ao fechar ou sair da página, tenta registrar o último progresso.
+        O keepalive aumenta a chance de o envio terminar mesmo com a saída.
+      */
+      window.addEventListener('pagehide', () => {
+        if (finalCompleted || !hasValidWhatsApp()) {
+          return;
+        }
+
+        const payload = buildPartialPayload('iniciado');
+
+        void sendPartialPayload(payload, true).catch(error => {
+          console.warn(
+            'Não foi possível salvar o progresso ao sair.',
+            error
+          );
+        });
+      });
 
       backButton.addEventListener('click', goBack);
       nextButton.addEventListener('click', handleNext);
