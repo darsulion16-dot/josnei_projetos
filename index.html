@@ -1503,10 +1503,13 @@
           finalCompleted = true;
 
           /*
-            O Pixel recebe somente o evento padrão Lead,
-            sem nome, WhatsApp, respostas, UTMs ou dados de saúde.
+            Após a conclusão confirmada pelo n8n, o Pixel dispara:
+            1) TypeformSubmit, para manter compatibilidade com o evento antigo;
+            2) Lead, evento padrão da Meta para conversão.
+            Nenhum dado pessoal, resposta, UTM ou dado de saúde é enviado ao Pixel.
           */
           if (!leadEventSent && typeof window.fbq === 'function') {
+            window.fbq('trackCustom', 'TypeformSubmit');
             window.fbq('track', 'Lead');
             leadEventSent = true;
           }
