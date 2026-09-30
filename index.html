@@ -380,6 +380,18 @@
       line-height: 1.65;
     }
 
+    .no-cnpj-icon {
+      background: var(--primary);
+      font-family: Georgia, serif;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    .no-cnpj-back {
+      margin-top: 24px;
+      border-color: var(--border);
+    }
+
     .footer {
       padding: 0 24px 22px;
       color: var(--muted);
@@ -830,6 +842,23 @@
               </p>
             </div>
           </div>
+
+          <div class="success" id="noCnpjArea">
+            <div>
+              <div class="success-icon no-cnpj-icon" aria-hidden="true">i</div>
+              <h2>Esta modalidade exige CNPJ ou MEI</h2>
+              <p>
+                A condição apresentada neste formulário é exclusiva para contratação
+                empresarial e, por isso, exige um MEI ou CNPJ ativo.
+                Neste momento, não conseguiremos seguir com esta cotação específica.
+                Agradecemos o seu interesse e, caso sua situação mude, você poderá
+                retornar e fazer uma nova simulação.
+              </p>
+              <button class="back-button no-cnpj-back" id="noCnpjBackButton" type="button">
+                Corrigir minha resposta
+              </button>
+            </div>
+          </div>
         </div>
       </section>
     </main>
@@ -1053,6 +1082,8 @@
       const nextButton = document.getElementById('nextButton');
       const formArea = document.getElementById('formArea');
       const successArea = document.getElementById('successArea');
+      const noCnpjArea = document.getElementById('noCnpjArea');
+      const noCnpjBackButton = document.getElementById('noCnpjBackButton');
 
       function getVisibleSteps() {
         return allSteps.filter(step => !step.showWhen || step.showWhen());
@@ -1298,6 +1329,15 @@
             }
 
             saveLocalState();
+
+            if (
+              step.id === 'tipo_cnpj' &&
+              optionText === 'Não tenho CNPJ'
+            ) {
+              finishWithoutCnpj();
+              return;
+            }
+
             goNext();
           });
 
@@ -1392,6 +1432,23 @@
 
         saveLocalState();
         goNext();
+      }
+
+      function finishWithoutCnpj() {
+        /*
+          Quem informa que não possui CNPJ não segue para a cotação empresarial.
+          O cadastro NÃO é enviado ao webhook final e NÃO dispara TypeformSubmit/Lead.
+          Se o webhook parcial estiver ativo, registra apenas o status de não elegível.
+        */
+        void queuePartialSave('nao_elegivel_sem_cnpj');
+
+        finalCompleted = true;
+        clearLocalState();
+
+        formArea.classList.add('hidden');
+        successArea.classList.remove('active');
+        noCnpjArea.classList.add('active');
+        progressBar.style.width = '100%';
       }
 
       function goNext() {
@@ -1551,6 +1608,17 @@
             error
           );
         });
+      });
+
+      noCnpjBackButton.addEventListener('click', () => {
+        noCnpjArea.classList.remove('active');
+        formArea.classList.remove('hidden');
+
+        answers.tipo_cnpj = '';
+        currentVisibleIndex = allSteps.findIndex(step => step.id === 'tipo_cnpj');
+
+        saveLocalState();
+        renderStep();
       });
 
       backButton.addEventListener('click', goBack);
