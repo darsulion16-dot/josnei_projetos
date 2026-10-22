@@ -1661,6 +1661,9 @@ html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!impo
         cria ou atualiza a linha na aba "Leads Parciais",
         usando session_id como coluna de comparação.
       */
+      const JOURNEY_WEBHOOK_URL =
+        'https://lungo-n8n.dzpywk.easypanel.host/webhook/cotacao-jornada-doctorclin';
+
       const PARTIAL_WEBHOOK_URL =
         'https://lungo-n8n.dzpywk.easypanel.host/webhook/cotacao-parcial-solucoes-sa';
 
@@ -2028,6 +2031,20 @@ html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!impo
       }
 
       async function sendPartialPayload(payload, keepalive = false) {
+        // Envio paralelo, independente do webhook parcial já existente.
+        // Não envia WhatsApp, nome ou respostas pessoais ao fluxo de jornada.
+        const publicKeys = ['session_id','formulario_variante','evento_jornada','etapa_id',
+          'etapa_numero','total_etapas','etapa_mais_avancada','tempo_etapa_segundos',
+          'tempo_acumulado_etapas','data_evento_jornada','data_inicio',
+          'data_atualizacao','status','utm_source','utm_medium','utm_campaign',
+          'utm_content','utm_term'];
+        const journeyData = {};
+        for (const key of publicKeys) journeyData[key] = payload[key] ?? '';
+        void fetch(JOURNEY_WEBHOOK_URL, {
+          method: 'POST',
+          body: toFormEncoded(journeyData),
+          keepalive
+        }).catch(error => console.warn('Jornada não registrada:', error));
         const response = await fetch(PARTIAL_WEBHOOK_URL, {
           method: 'POST',
           body: toFormEncoded(payload),
@@ -2367,26 +2384,27 @@ html,body{height:auto!important;min-height:100%!important;overflow-x:hidden!impo
             );
           }
 
-          /*
-            Aguarda os salvamentos anteriores e atualiza a mesma linha
-            da planilha para status "concluido".
-          */
-          await queuePartialSave('concluido');
-
-          window.__dcJourneyEvent = 'cadastro_concluido';
+          // O webhook final respondeu com sucesso: a conversão já pode ser registrada.
+          // Não depende do webhook parcial nem do salvamento da jornada.
           finalCompleted = true;
+          window.__dcJourneyEvent = 'cadastro_concluido';
 
-          /*
-            Após a conclusão confirmada pelo n8n, o Pixel dispara:
-            1) TypeformSubmit, para manter compatibilidade com o evento antigo;
-            2) Lead, evento padrão da Meta para conversão.
-            Nenhum dado pessoal, resposta, UTM ou dado de saúde é enviado ao Pixel.
-          */
+          // Evita duplicação na mesma sessão de preenchimento.
+          // Nenhum dado pessoal ou resposta é enviado ao Pixel.
           if (!leadEventSent && typeof window.fbq === 'function') {
-            window.fbq('trackCustom', 'TypeformSubmit');
-            window.fbq('track', 'Lead');
             leadEventSent = true;
+            try {
+              window.fbq('trackCustom', 'TypeformSubmit');
+              window.fbq('track', 'Lead');
+            } catch (pixelError) {
+              console.warn('Falha ao acionar o Pixel:', pixelError);
+            }
           }
+
+          // O acompanhamento é auxiliar: erros aqui não anulam a conversão.
+          void queuePartialSave('concluido').catch(error => {
+            console.warn('Não foi possível atualizar o progresso parcial:', error);
+          });
 
           clearLocalState();
 
